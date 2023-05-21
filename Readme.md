@@ -66,3 +66,10 @@ Components:
 
 Component Composition: Jab ek Functional component ke andar dusre functional component ko call karte hai <Title /> aise karke 
  
+
+Virtual DOM: A representation of the DOM with us is known as the virtual DOM.
+- We need virtual DOM for reconcelliation in React. 
+- Agar different childrens hai tab react dekh leta hai khud hi, but agar same childrens hai, tab react ko pta nhi chalta kis child me change hua hai, aur wo poora component hi re-render karta hai 
+- React uses diff algorithm for reconcelliation
+- so agar hum unique keys ka use karte hai, tab react ko pta hota hai, khape change hua hai, aur wo bas ussi component ko re-render karta hai, har chij re-render nhi karta
+- It is like a git diff, to apne DOM tree me bas whi chij ko re-render karega jo change hua hai bas
