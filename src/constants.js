@@ -1,32 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+export const TITLE_IMG = 'https://lh3.googleusercontent.com/p/AF1QipO_6cTc3QdC9L2vAOyCkUPG-G-9YeFxo3YiDu3R=w1080-h608-p-no-v0';
 
-// JSX => React.createElement => Object => HTML(DOM)
-// Element
-const title = (
-	<a href='/'>
-		<img className='logo' alt='logo' src='https://lh3.googleusercontent.com/p/AF1QipO_6cTc3QdC9L2vAOyCkUPG-G-9YeFxo3YiDu3R=w1080-h608-p-no-v0' />
-	</a>
-);
+export const CARD_IMG_CDN_URL = 'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/';
 
-// Functional Component => Its just a function
-const Header = () => {
-	return (
-		<div className='header'>
-			{title}
-			<div className='nav-items'>
-				<ul>
-					<li>Home</li>
-					<li>Abount</li>
-					<li>Contact</li>
-					<li>Cart</li>
-				</ul>
-			</div>
-		</div>
-	);
-}
-
-const restaurantList = [
+export const restaurantList = [
 	{
     "type": "restaurant",
     "data": {
@@ -883,45 +859,3 @@ const restaurantList = [
 	"subtype": "basic"
 	},
 ];
-
-const RestaurantCard = ({cloudinaryImageId, name, cuisines, avgRating}) => {
-	return (
-		<div className='card'>
-			<img alt='restaurant-logo' src={'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/' + cloudinaryImageId} />
-			<h2>{name}</h2>
-			<h3>{cuisines.join(', ')}</h3>
-			<h4>{avgRating} Stars</h4>
-		</div>
-	);
-}
-
-const Body = () => {
-	return (
-		<div className='restaurant-list'>
-			{
-				restaurantList.map(restaurant => {
-					return <RestaurantCard {...restaurant.data}/>;
-				})
-			}
-		</div>
-	);
-}
-
-const Footer = () => {
-	return (
-		<div>Footer</div>
-	);
-}
-
-const AppLayout = () => {
-	return (
-		<>
-			<Header/>
-			<Body/>
-			<Footer/>
-		</>
-	);
-}
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />); 

@@ -67,9 +67,32 @@ Components:
 Component Composition: Jab ek Functional component ke andar dusre functional component ko call karte hai <Title /> aise karke 
  
 
-Virtual DOM: A representation of the DOM with us is known as the virtual DOM.
+Virtual DOM: A light-weight representation of the DOM with us is known as the virtual DOM.
 - We need virtual DOM for reconcelliation in React. 
 - Agar different childrens hai tab react dekh leta hai khud hi, but agar same childrens hai, tab react ko pta nhi chalta kis child me change hua hai, aur wo poora component hi re-render karta hai 
 - React uses diff algorithm for reconcelliation
 - so agar hum unique keys ka use karte hai, tab react ko pta hota hai, khape change hua hai, aur wo bas ussi component ko re-render karta hai, har chij re-render nhi karta
 - It is like a git diff, to apne DOM tree me bas whi chij ko re-render karega jo change hua hai bas
+- If we use index as key, and add some element to start of the list, then React will have to re-render everything, as the keys are changed, and it will cause perfomance issues again. So, that's why using index as keys are considered as anti-pattern in React. 
+
+React Reconcelleation Algorithm:
+- React virtual DOM ka use karta hai UI ko update karne ke liye
+- Iss se hum bina actual DOM ko manupilate kiye changes kar sakte hai
+- 
+
+
+?.  isko optional chaining kehte hai
+user.address?.location  => agar address exist karta hai and saath me wo null/undefined nhi hai, tabhi wo uske aage ke properties check karega, nhi to aage nhi jaaye, aur address ka hi value return kar dega, joki undefined hai. 
+So, haame error nhi milega ab, so kuch null bhi hua to haame undefiend return hoga
+
+
+Default import => import Header from 'Header';
+Named Import => import { Header } from 'Header';
+import * as obj from 'Header'; => ye bhi kar sakte hai, agar sab named import hai
+baad me obj.title, obj.header aise use kar sakte hai  
+
+- React me one way data binding hoti hai. 
+
+- React keeps a track of all the state variables, so agar unme kuch bhi change hota hai, to wo component khud hi re render ho jaayega. reoncelliation algo dhyan rakhta hai ye sab ka
+
+
