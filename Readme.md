@@ -23,6 +23,7 @@
  * Transitive Dependencies
  */
 
+- React is fast due to its fast DOM manupulation.
 
 Transitive Dependency: ek npm package dusre packages ko use karta hai, aur fir wo sub-packages aur bhi dusre packages ko use kar sakte hai 
 ye saari transitive dependencies ko npm take care karta hai 
@@ -85,6 +86,9 @@ React Reconcelleation Algorithm:
 user.address?.location  => agar address exist karta hai and saath me wo null/undefined nhi hai, tabhi wo uske aage ke properties check karega, nhi to aage nhi jaaye, aur address ka hi value return kar dega, joki undefined hai. 
 So, haame error nhi milega ab, so kuch null bhi hua to haame undefiend return hoga
 
+Nullish Coalescing
+const data = obj?.prop ?? "fallback string";
+- So agar isse wo value nhi mili, then undefined ki jagah wo fallback string return karega, hum whape kuch bhi ek default value daal sakte hai return karne ke liye, jo return ho jab saamne waala undefined ya null nikle.
 
 Default import => import Header from 'Header';
 Named Import => import { Header } from 'Header';
@@ -94,5 +98,23 @@ baad me obj.title, obj.header aise use kar sakte hai
 - React me one way data binding hoti hai. 
 
 - React keeps a track of all the state variables, so agar unme kuch bhi change hota hai, to wo component khud hi re render ho jaayega. reoncelliation algo dhyan rakhta hai ye sab ka
+ - Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM
 
 
+Hamari body jo hai, wo har baar re-render hoti hai, so har chij ko whape nhi dalna hai
+- wo smartly re-render karta hai, aur bas ussi component ko change karnega jisme kuch diff hai 
+ 
+- If any state or props changes, then our page renders again.
+- agar useEffect me depndency array nhi denge, to wo har state change pe call hoga
+- If the dependecy array is empty, then it will be called only one time. 
+- Dependency array me agar kuch state variable hai, then bas ussi state change pe apna useEffect call hoga
+- useEffect jo hai, wo hamare page render hone ke baad call hota hai
+
+- Agar koi state variable change hota hai, to hamara page re-render hota hai, but VDOM smartly re-render karta hai chijo ko
+
+- hooks jo hai apne, unhe functional components ke andar hi likhte hai hum
+- JSX me bas hum expressions likh sakte hai, statements nhi likh sakte
+let a = 10; // ye nhi chalega JSX me
+((a = 10), console.log(a))   // aise karke hum isse expression bna denge, aur fir likh sakte hai
+
+ 
