@@ -6,7 +6,7 @@
 }
 
 .logo {
-  width: 130px;
+  width: 132px;
 }
 
 .nav-items > ul {
@@ -32,4 +32,34 @@
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
+}
+
+.shimmer-img {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-details {
+  width: 180px;
+  height: 70px;
+  margin: 10px 0 0 0;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.menu {
+  display: flex;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -800px 0;
+  }
+  100% {
+    background-position: 800px 0;
+  }
 }

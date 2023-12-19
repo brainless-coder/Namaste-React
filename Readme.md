@@ -18,8 +18,6 @@
  * Zero Config
  * Tree Shaking: Removing unwanted code
  *
- *
- *
  * Transitive Dependencies
  */
 
@@ -37,7 +35,7 @@ props => properties ya fir jo HTML me attributes hote hai, usse hi react me prop
 
 Bundlers: webpack, vite, parcel
 - webpack is used in create react app. It uses babel. 
-- parcel budles, minifes our files. It also clean our code like removing logs and all. 
+- parcel bundles, minifes our files. It also clean our code like removing logs and all. 
 - It manages the dev and prod build. 
 
 
@@ -50,10 +48,10 @@ HMR: Hot Module Reloading
  - It uses file watcher algorithm written in C++.
 
 dist folder ke andar apne project ke minified files hote hai, taaki server pe har chij jaldi load ho jaaye and fast execution ho 
-apna project ka biuld store hota hai dist folder me 
+apna project ka build store hota hai dist folder me 
 
 
-Jab bhi kisi dev/element me multiple childs hote hai, matlab wo koi array/list ho, tab haame key dena parta hai childrens ko
+Jab bhi kisi div/element me multiple childs hote hai, matlab wo koi array/list ho, tab haame key dena parta hai childrens ko
 Unn childs ke props me ek unique key dena parta hai, taaki usse uniquely identify kar paaye
 - Ye aise keys dene se rendering jaldi hota hai, agar kuch nya <li> daale hum top me, to key se wo sidha inject kar dega, nhi to usse poora wo div ko re-render karna parega
 - Agar keys nhi hoga to usse sab re-render karna hoga, agar key hoga, to wo bas usko wha inject kar dega, aur baaki ke <li> ko usse re-render karne ki jaroorat nhi paregi 
@@ -98,11 +96,11 @@ baad me obj.title, obj.header aise use kar sakte hai
 - React me one way data binding hoti hai. 
 
 - React keeps a track of all the state variables, so agar unme kuch bhi change hota hai, to wo component khud hi re render ho jaayega. reoncelliation algo dhyan rakhta hai ye sab ka
- - Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM
+- Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM
 
 
 Hamari body jo hai, wo har baar re-render hoti hai, so har chij ko whape nhi dalna hai
-- wo smartly re-render karta hai, aur bas ussi component ko change karnega jisme kuch diff hai 
+- wo smartly re-render karta hai, aur bas ussi component ko change karega jisme kuch diff hai 
  
 - If any state or props changes, then our page renders again.
 - agar useEffect me depndency array nhi denge, to wo har state change pe call hoga
@@ -116,5 +114,17 @@ Hamari body jo hai, wo har baar re-render hoti hai, so har chij ko whape nhi dal
 - JSX me bas hum expressions likh sakte hai, statements nhi likh sakte
 let a = 10; // ye nhi chalega JSX me
 ((a = 10), console.log(a))   // aise karke hum isse expression bna denge, aur fir likh sakte hai
+- At its core, an expression is a bit of JavaScript code that produces a value.
+- eg: (1+3*6), 'hi', arr.pop()  // ye sab expression hai
+- agar kuch console.log() ke andar chal paa rha hai, to wo expression hai, nhi to statement ya invalid JS
 
- 
+
+- kabhi bhi 1 component ke andar dusra component mat banana, nhi to wo compoennt har re-render pe create hota rhaega, and apna rendering slow ho jaayega
+- so, jitne bhi components hai, wo haame hamesa upar me hi banane hai, and we can call that component inside other components.
+- kabhi bhi state variables ko if-else ya for loop ke andar mat likho, kyunki wo inconsistency create karta hai, and react ko inconsistencies pasand nhi hai
+
+
+Client side routing: matlab haame kuch load nhi karna hai server se, jab hum routing kar rhe hai
+Server side routing: routing ke time page jo hai wo server se aayega, client se nhi
+
+

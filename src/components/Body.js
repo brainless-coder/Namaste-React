@@ -1,10 +1,11 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, restaurants) {
 	return restaurants.filter(restaurant => {
-		const restaurantName = restaurant?.data?.name?.toLowerCase();
+		const restaurantName = restaurant?.info?.name?.toLowerCase();
 		return restaurantName?.includes(searchText.toLowerCase());
 	});
 }
@@ -21,12 +22,11 @@ const Body = () => {
 	async function getRestaurants() {
 		const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1356803&lng=72.9297528&page_type=DESKTOP_WEB_LISTING");
 		const jsonData = await response.json();
-		console.log(jsonData);
-		setAllRestaurants(jsonData?.data?.cards?.[2]?.data?.data?.cards);
-		setFilteredRestaurants(jsonData?.data?.cards?.[2]?.data?.data?.cards);
+		setAllRestaurants(jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+		setFilteredRestaurants(jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 	}
 
-	console.log("Page render");
+	console.log("Body render");
 
 	// Not render component (Early return)
 	if (!allRestaurants)	return null;
@@ -35,7 +35,7 @@ const Body = () => {
 		<Shimmer/>
 	) : (
 		<>
-			<div classNam e="search-container">
+			<div className="search-container">
 				<input 
 					className="search-input" 
 					type="text" 
@@ -43,6 +43,9 @@ const Body = () => {
 					value= {searchText} 
 					onChange={(e) => {
 						setSearchText(e.target.value);
+						const data = filterData(searchText, allRestaurants);
+						setFilteredRestaurants(data);
+						if (e.target.value === '')	setFilteredRestaurants(allRestaurants)
 					}} 
 				/>
 				<button 
@@ -61,7 +64,9 @@ const Body = () => {
 						<h1>No Restaurants match your filter!!</h1>
 						) : (
 							filteredRestaurants.map(restaurant => {
-							return <RestaurantCard {...restaurant.data} key={restaurant.data.id} />;
+							return <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id} >
+								<RestaurantCard {...restaurant.info} />
+							</Link>;
 							})
 						)
 				}

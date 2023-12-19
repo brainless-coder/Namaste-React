@@ -1,14 +1,11 @@
-import { TITLE_IMG } from '../constants';
 import { useState } from 'react';
-
-const loggedInUser = () => {
-	return true;
-}
+import Logo from '../assets/img/foodvilla.jpeg';
+import { Link } from 'react-router-dom';
 
 // JSX => React.createElement => Object => HTML(DOM)
 const title = (
 	<a href='/'>
-		<img className='logo' alt='logo' src={TITLE_IMG} />
+		<img className='logo' alt='logo' src={Logo} />
 	</a>
 );
 
@@ -16,15 +13,16 @@ const title = (
 const Header = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	
+	console.log("Header render");
 	return (
 		<div className='header'>
 			{title}
 			<h1>Food Villa</h1>
 			<div className='nav-items'>
 				<ul>
-					<li>Home</li>
-					<li>Abount</li>
-					<li>Contact</li>
+					<li><Link to="/">Home</Link></li>
+					<li><Link to="/about">About</Link></li>
+					<li><Link to="/contact">Contact</Link></li>
 					<li>Cart</li>
 					{isLoggedIn ? 
 						(<button onClick={() => setIsLoggedIn(false)}>Logout</button>) : 
