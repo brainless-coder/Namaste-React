@@ -20,10 +20,12 @@ const Body = () => {
 	}, []); 
 
 	async function getRestaurants() {
-		const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1356803&lng=72.9297528&page_type=DESKTOP_WEB_LISTING");
+		// const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1356803&lng=72.9297528&page_type=DESKTOP_WEB_LISTING");
+		const response = await fetch("https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D19.1356803%26lng%3D72.9297528%26page_type%3DDESKTOP_WEB_LISTING");
 		const jsonData = await response.json();
-		setAllRestaurants(jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-		setFilteredRestaurants(jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+		const restaurantData = jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle ? (jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants) : (jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+		setAllRestaurants(restaurantData);
+		setFilteredRestaurants(restaurantData);
 	}
 
 	console.log("Body render");

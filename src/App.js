@@ -9,6 +9,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Error from './components/Error';
 import RestaurantMenu from './components/RestaurantMenu';
+import LoginForm from './components/LoginForm';
 
 const AppLayout = () => {
 	return (
@@ -46,6 +47,10 @@ const appRouter = createBrowserRouter([
 				// this is my dynamic URL, it will work according to the ID
 				path: '/restaurant/:resId',
 				element: <RestaurantMenu />
+			},
+			{
+				path: '/login',
+				element: <LoginForm />
 			}
 		]
 	},
