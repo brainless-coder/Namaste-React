@@ -128,3 +128,15 @@ Client side routing: matlab haame kuch load nhi karna hai server se, jab hum rou
 Server side routing: routing ke time page jo hai wo server se aayega, client se nhi
 
 
+Class Based Components:
+- We cannot create a class based component without the render() method. 
+- ye render method jo hai wo JSX return karta hai, so apan apna sab JSX render() ke andar hi likhte hai 
+
+Do not mutate the state directly, warna apna UI sync me nhi rahega. setState() function jo hai wo react ko batata hai jo UI me ye change hua hai, aur apne page ko uss hisab se re-render karta hai 
+
+- Babel jo hai, wo hamare JSX ko html me convert karta hai
+
+- Never compare React lifecycle methods with functional componenets
+- React lifecycle methods class based component me use hota hai
+- ye functional react components me unhone react lifecycle methods ka concept hi hta diya
+

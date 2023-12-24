@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Error from './components/Error';
 import RestaurantMenu from './components/RestaurantMenu';
 import LoginForm from './components/LoginForm';
+import Profile from './components/ProfileClass';
 
 const AppLayout = () => {
 	return (
@@ -36,8 +37,12 @@ const appRouter = createBrowserRouter([
 				element: <Body />
 			},
 			{
-				path: '/about',
-				element: <About />
+				path: '/about',	// agar aage me / lgayenge to wo root se path lega
+				element: <About />,
+				children: [{
+					path: 'profile',	// parent_path/{path} ==>> localhost:1234//about/profile
+					element: <Profile />
+				}]
 			},
 			{
 				path: '/contact',
