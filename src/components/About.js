@@ -12,6 +12,11 @@ class About extends React.Component {
   componentDidMount() {
     console.log("Parent - ComponentDidMount");
   }
+
+  componentDidUpdate() {
+    console.log("Parent - ComponentDidUpdate");
+  }
+
   render() {
     console.log("Parent - render");
     return <div>
@@ -19,8 +24,8 @@ class About extends React.Component {
     <h3>Ye About Us page hai, yha tujhe sab details mil jaayenge</h3>
     <h4>Ab Faltu ka chilla mat, chup chap order kar main page pe jaake 🧨</h4>
 
-    {/* <Profile name="First Child" /> */}
-    <ProfileFunctionalComponent name="Functional Component" />
+    <Profile name="First Child" />
+    {/* <ProfileFunctionalComponent name="Functional Component" /> */}
   </div>
   }
 }

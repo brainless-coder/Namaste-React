@@ -17,7 +17,6 @@ class Profile extends React.Component {
     // API Calls
     const data = await fetch("https://api.github.com/users/brainless-coder");
     const json = await data.json();
-    console.log(json);
     this.setState({
       userInfo: json
     })
@@ -30,11 +29,11 @@ class Profile extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     // ye jab bhi koi component update hoga tab call hoga
-    // dependecy array waali chij aise handle hoti thi idhar
+    // dependecy array waali chij aise handle hoti thi idhar, if else me
     if (this.state.count !== prevState.count) {
       // code 
     }
-    console.log("ComponentDidUpdate");
+    console.log("Child - ComponentDidUpdate");
   }
 
   componentWillUnmount() {

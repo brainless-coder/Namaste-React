@@ -137,6 +137,26 @@ Do not mutate the state directly, warna apna UI sync me nhi rahega. setState() f
 - Babel jo hai, wo hamare JSX ko html me convert karta hai
 
 - Never compare React lifecycle methods with functional componenets
+- React Hooks and React Lifecycle Methods are not interchangeable and do not have the same relationship
 - React lifecycle methods class based component me use hota hai
 - ye functional react components me unhone react lifecycle methods ka concept hi hta diya
 
+
+IIFE: Immediately invoke function expression.
+(async mera_func() {
+  // code
+})();
+
+Why can't we have the callback function of useEffect async?
+- The first argument of useEffect is supposed to be a function that returns either nothing (undefined) or a function (to clean up side effects). But an async function returns a Promise, which can't be called as a function!
+- so useEffect jo hai promise ko expect nhi kar rha hai, isliye wo error fek dega whape
+
+Modularity: code ko divide karke smaller chukns me likhna, taaki apna code more readable and maintainable ho, aur baad me haame debugging ye sabme dikakt naa aaye. 
+
+- Hooks are used to export some logic into that function. 
+- hum apne custom hooks bnake usme sab logic daal sakte hai.
+
+- Lazy loading jo hai, wo ek promise return karta hai
+- so apan usme suspense ka use karte hai taaki wo promise resolve ho jaaye, nhi to wo promise resolve nhi hoga and haame error milega wo component load karne pe
+
+- Never lazy load inside a component, nhi to wo har ek render cycle pe lazy load hoga, and hamare app ka perfomance utna nhi rahega

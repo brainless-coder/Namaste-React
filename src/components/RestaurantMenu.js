@@ -1,33 +1,20 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { CARD_IMG_CDN_URL, MENU_API } from "../constants";
+import { CARD_IMG_CDN_URL, MENU_URL } from "../constants";
 import Shimmer from "./Shimmer";
+import useRestaurantData from "../utils/useRestaurantData";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
+  const restaurant = useRestaurantData(resId);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  async function fetchMenu() {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json ();
-    setRestaurantInfo(json?.data);
-  }
-
-  if (!restaurantInfo)  return <Shimmer />;
-
-  const { name, cloudinaryImageId, locality, avgRating, costForTwoMessage, cuisines } = restaurantInfo?.cards?.[0]?.card?.card?.info;
-  const { itemCards } = (restaurantInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.itemCards) ? (restaurantInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card) : (restaurantInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card);
-  console.log("restaurantInfo  ====>>>> ", restaurantInfo);
+  if (!restaurant)  return <Shimmer />
+  const { name, cloudinaryImageId, locality, cuisines, costForTwoMessage, avgRating, itemCards } = restaurant;
 
   return (
     <div className="menu">
       <div>
         <h2>{name}</h2>
-        <img src={CARD_IMG_CDN_URL + cloudinaryImageId}/>
+        <img src={CARD_IMG_CDN_URL + cloudinaryImageId} alt="Restaurant Banner"/>
         <h3>{locality}</h3>
         <h3>{cuisines.join(", ")} - {costForTwoMessage}</h3>
         <h3>{avgRating} Stars</h3>
