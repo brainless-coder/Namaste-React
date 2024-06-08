@@ -24,7 +24,7 @@ class About extends React.Component {
     <h3>Ye About Us page hai, yha tujhe sab details mil jaayenge</h3>
     <h4>Ab Faltu ka chilla mat, chup chap order kar main page pe jaake 🧨</h4>
 
-    <Profile name="First Child" />
+    <Profile name="First Child" age="ye mera age prop" />
     {/* <ProfileFunctionalComponent name="Functional Component" /> */}
   </div>
   }

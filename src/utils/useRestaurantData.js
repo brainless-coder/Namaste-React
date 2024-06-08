@@ -10,14 +10,17 @@ const useRestaurantData = (resId) => {
 
   async function fetchMenu() {
     const data = await fetch(MENU_URL + resId);
-    const json = await data.json ();
+    const json = await data.json();
     setRestaurantInfo(json?.data);
   }
 
   if (!restaurantInfo) return null;
 
-  const { name, cloudinaryImageId, locality, avgRating, costForTwoMessage, cuisines } = restaurantInfo?.cards?.[0]?.card?.card?.info;
-  const { itemCards } = (restaurantInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.itemCards) ? (restaurantInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card) : (restaurantInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card);
+  const { name, cloudinaryImageId, locality, avgRating, costForTwoMessage, cuisines } = restaurantInfo?.cards?.[2]?.card?.card?.info;
+  const { itemCards } = (restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.itemCards) ? (restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card) : (restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card);
+  // console.log("itemCards ====>>>> ", itemCards);
+  // console.log(restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.itemCards);
+  // console.log(restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.itemCards)
 
   return {
     name, cloudinaryImageId, locality, avgRating, costForTwoMessage, cuisines, itemCards

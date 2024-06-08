@@ -11,6 +11,7 @@ class Profile extends React.Component {
       }
     };
     console.log("Child - constructor " + this.props.name);
+    console.log("Child - saare props " + JSON.stringify(this.props));
   }
 
   async componentDidMount() {
@@ -38,7 +39,7 @@ class Profile extends React.Component {
 
   componentWillUnmount() {
     // Jab wo componet destroy hota hai
-    // hum dure page me jaaye ya aur kuch
+    // hum dusre page me jaaye ya aur kuch
     clearInterval(this.timer);
     console.log("componentWillUnmount");
   }
@@ -47,7 +48,7 @@ class Profile extends React.Component {
     console.log("Child - render " + this.props.name);
     return <div>
         <h1>Profile Class Component</h1>
-        <img src={this.state.userInfo.avatar_url}/>
+        {/* <img src={this.state.userInfo.avatar_url}/> */}
         <h2>Name: {this.state.userInfo.name}</h2>
         <h2>{this.state.userInfo.bio}</h2>
 
@@ -59,6 +60,7 @@ class Profile extends React.Component {
           // We do not mutate state directly
           // Never do this.state.count = 1 directly
           // setState() ke andar direclty apna modified state daal do
+          // If we mutate the state directly, React may not detect the change and will fail to update the component properly
           this.setState({
             count: 1
           })

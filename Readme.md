@@ -160,3 +160,11 @@ Modularity: code ko divide karke smaller chukns me likhna, taaki apna code more 
 - so apan usme suspense ka use karte hai taaki wo promise resolve ho jaaye, nhi to wo promise resolve nhi hoga and haame error milega wo component load karne pe
 
 - Never lazy load inside a component, nhi to wo har ek render cycle pe lazy load hoga, and hamare app ka perfomance utna nhi rahega
+
+<ul style={
+  {
+    backgroundColor: 'black',
+    color: 'pink'
+  }
+}>
+- Its an object inside style. So, its an object inside JSX.
