@@ -19,10 +19,10 @@ class About extends React.Component {
 
   render() {
     console.log("Parent - render");
-    return <div>
-    <h1>About Us Page</h1>
-    <h3>Ye About Us page hai, yha tujhe sab details mil jaayenge</h3>
-    <h4>Ab Faltu ka chilla mat, chup chap order kar main page pe jaake 🧨</h4>
+    return <div className="bg-purple-200 p-2 m-2">
+    <h1 className="py-1 my-1 font-bold text-3xl">About Us Page</h1>
+    <h3 className="font-medium text-xl">Ye About Us page hai, yha tujhe sab details mil jaayenge</h3>
+    <h4 className="font-medium text-xl">Ab Faltu ka chilla mat, chup chap order kar main page pe jaake 🧨</h4>
 
     <Profile name="First Child" age="ye mera age prop" />
     {/* <ProfileFunctionalComponent name="Functional Component" /> */}

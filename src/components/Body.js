@@ -16,9 +16,9 @@ const Body = () => {
 		<Shimmer/>
 	) : (
 		<>
-			<div className="search-container">
+			<div className="search-container p-3 bg-pink-200 my-2">
 				<input 
-					className="search-input" 
+					className="search-input focus:bg-green-200 p-2 m-2" 
 					type="text" 
 					placeholder="Search" 
 					value= {searchText} 
@@ -28,13 +28,13 @@ const Body = () => {
 					}} 
 				/>
 				<button 
-					className="search-btn" 
+					className="py-2 px-3 m-2 bg-purple-800 text-white rounded-lg hover:bg-yellow-500" 
 					onClick={() => searchRestaurants(searchText)}
 				>
 					Search
 				</button>
 			</div>
-			<div className='restaurant-list'>
+			<div className='restaurant-list flex flex-wrap bg-purple-200'>
 				{
 					filteredRestaurants?.length === 0 ? (
 						<h1>No Restaurants match your filter!!</h1>

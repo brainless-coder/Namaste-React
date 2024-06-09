@@ -46,11 +46,11 @@ class Profile extends React.Component {
 
   render() {
     console.log("Child - render " + this.props.name);
-    return <div>
-        <h1>Profile Class Component</h1>
+    return <div className="p-2 m-2">
+        <h1 className="font-bold text-2xl">Profile Class Component</h1>
         {/* <img src={this.state.userInfo.avatar_url}/> */}
-        <h2>Name: {this.state.userInfo.name}</h2>
-        <h2>{this.state.userInfo.bio}</h2>
+        <h2 className="text-xl">Name: {this.state.userInfo.name}</h2>
+        <h2 className="text-xl">{this.state.userInfo.bio}</h2>
 
 
 

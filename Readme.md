@@ -168,3 +168,13 @@ Modularity: code ko divide karke smaller chukns me likhna, taaki apna code more 
   }
 }>
 - Its an object inside style. So, its an object inside JSX.
+- style jo hai wo JSX lega ek, bcoz we use JSX to write Javascript code inside react. 
+- to yha, hum uss JSX me apna style ka object de sakte hai
+
+
+# CSS in React/ Tailwaind CSS
+
+- tailwind me agar fixed height, width deno ho to, square bracket notation hota hai apne pas
+- w-[200px] to ab ye fixed issi width ka hoga
+- tailwind bas unhi classes ko production pe ship karega, jo hamne apne project me use kiya hai, sab classes ko nhi bhejega wo apne build me
+- iss se apna build size jyada baara nhi banta hai

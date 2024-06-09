@@ -11,26 +11,26 @@ const RestaurantMenu = () => {
   const { name, cloudinaryImageId, locality, cuisines, costForTwoMessage, avgRating, itemCards } = restaurant;
 
   return (
-    <div className="menu">
-      <div>
-        <h2>{name}</h2>
-        <img src={CARD_IMG_CDN_URL + cloudinaryImageId} alt="Restaurant Banner"/>
-        <h3>{locality}</h3>
-        <h3>{cuisines.join(", ")} - {costForTwoMessage}</h3>
-        <h3>{avgRating} Stars</h3>
+    <div className="menu flex bg-purple-200 p-2 m-2">
+      <div className="p-2 m-2">
+        <h2 className="font-bold text-2xl my-2">{name}</h2>
+        <img className="my-2 py-2" src={CARD_IMG_CDN_URL + cloudinaryImageId} alt="Restaurant Banner"/>
+        <h3 className="font-semibold text-xl">{locality}</h3>
+        <h3 className="font-medium text-xl">{cuisines.join(", ")} - {costForTwoMessage}</h3>
+        <h3 className="font-medium text-xl">{avgRating} Stars</h3>
       </div>
-      <div>
-      <h2>Menu</h2>
-        <ul>
+      <div className="p-2 m-2">
+      <h2 className="font-bold text-2xl py-2 my-2">Menu</h2>
+        <ul className="list-decimal">
           { itemCards ? (
               itemCards.map(item => (
-                <div key={item.card.info.id}>
-                  <li>{item.card.info.name}: Rs.{item.card.info.price/100 || item.card.info.defaultPrice/100}</li>
+                <div className="p-1" key={item.card.info.id}>
+                  <li className="font-medium">{item.card.info.name}: Rs.{item.card.info.price/100 || item.card.info.defaultPrice/100}</li>
                   <p>{item.card.info.category}</p>
                 </div>
               ))
             ) : (
-              <h2>No Menu Items Available</h2>
+              <h2 className="text-3xl font-bold">No Menu Items Available</h2>
             )
           }
         </ul>
