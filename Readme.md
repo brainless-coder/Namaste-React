@@ -178,3 +178,44 @@ Modularity: code ko divide karke smaller chukns me likhna, taaki apna code more 
 - w-[200px] to ab ye fixed issi width ka hoga
 - tailwind bas unhi classes ko production pe ship karega, jo hamne apne project me use kiya hai, sab classes ko nhi bhejega wo apne build me
 - iss se apna build size jyada baara nhi banta hai
+
+- Tailwind ka jo config file hai, usme hum apne values daal sakte hai
+- lets say haame ek nya class banana hai, to usme hum wo daal sakte hai, and then usse sab jagah use kar payenge
+- tailwind init ke time --full waala flag daaloge, to uss file me sab chije aa jayegi, and there we can also change the values of the tailwind classes, or make our own classes
+- but jo default classes hai, unki values chagne karna good practice nhi hai, isliye hamesa khali config bnao, and jo extra classes haame chahiye, usme wo add kardo bas, to hum apne nye extra classes ko directly use kar sakte hai
+theme: {
+    extend: {
+      colors: {
+        primay: "#eeeeee"
+      }
+    },
+  },
+
+- aise config me daal sakte hai hum
+
+
+- React jo hai, wo virtual DOM ka use karta hai
+- react, 2 virtual DOM maintain karta hai, ek nya aur ek purana
+- then unn dono ko compare karta hai, aur jo bhi difference hota hai
+- uss difference ko bas actual DOM me inject karta hai
+- that's why react is fast. 
+
+Props Drilling: jab prop ko ek component se dusre component me pass karte hai
+- like apne body me user hai jo ki khud ek prop tha, wha se hamne usse child pe bhi pass kar diya
+- to isse props drilling kehte hai 
+- aise prop drilling se humlog, parent to child data pass kar sakte hai 
+
+Lifting the state up: jab kisi child ke state ko parent se control karte hai, matlab hum uska state lift up kar rhe hai
+
+- React dev tools me apne pas profiler hota hai, usse on karke fir hum jo chahe karo, uske baad stop karne ke baad hum har chij dekh sakte hai, like kis component ne load hone me kitna time lgaya ye sab, konsa component slow chal rha h, and apne app ko uss hisab se dekh ke optimise kar sakte hai
+
+- suppose hamare pas koi aisa information jo hamme app me har jagah chahiye, to whape hum props drilling nhi kar sakte, we need to store that data in some central place. 
+- We can use localstorage for that, but updating the localstorage is a costly operation, that's why we will no do that. 
+- We will use react context for storing the data in the central place.
+- state, props ye sab jo hote hai, they are tied to a component, but jo apna context hai, wo kisi bhi component se tied nhi hota hai, wo saare components se independent hota hai, to usse app me khipe bhi use kar sakte hai.
+- aisa data jo haame app me alag alag jagah use hoga, uske liye context ka use karte hai hum. 
+- It stores data in a central place. 
+
+- context ka haam naam de sakte hai, displayName se, to wo naam react developer tools me dikhega, to ab debugging me iska use kar sakte hai
+- class based component me apne context ko directly humlog as a component use karte hai
+- wha humlog ek JSX likhenge, joki ek value lega, aur uss se jo maan hai wo karega

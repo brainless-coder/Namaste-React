@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import RestaurantMenu from './components/RestaurantMenu';
 import LoginForm from './components/LoginForm';
 import Profile from './components/ProfileClass';
 import Shimmer from './components/Shimmer';
+import UserContext from './utils/userContext';
 const Instamart = lazy(() => import('./components/Instamart'));
 const About = lazy(() => import('./components/About'));
 // Lazy Loading 
@@ -21,12 +22,25 @@ const About = lazy(() => import('./components/About'));
 // Dynamic Import
 
 const AppLayout = () => {
+	// ye user jo hai, backend se aayega useEffect me
+	const [user, setUser] = useState({
+		name: "Arvind Prime",
+		email: "arvind.singh@gmail.com"
+	});
 	return (
 		<>
-			<Header/>
-			{/* ye outlet me haame jo dalna hai wo daal sakte hai hum, createBrowserRouter ke config ke according, so uss config ke children ke hisab se yha different pages render honge, so jo bhi children me hoga, uske according ye outlet apna populate hoga */}
-			<Outlet />
-			<Footer/>
+			<UserContext.Provider 
+				value={{
+					user: user,
+					setUser: setUser
+				}}	
+			>
+
+				<Header/>
+				{/* ye outlet me haame jo dalna hai wo daal sakte hai hum, createBrowserRouter ke config ke according, so uss config ke children ke hisab se yha different pages render honge, so jo bhi children me hoga, uske according ye outlet apna populate hoga */}
+				<Outlet />
+				<Footer/>
+			</UserContext.Provider>
 		</>
 	);
 }

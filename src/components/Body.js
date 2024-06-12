@@ -1,13 +1,15 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurantList from "../utils/useRestaurantList";
+import UserContext from "../utils/userContext";
 
 
 const Body = () => {
 	const [searchText, setSearchText] = useState("");
 	const { allRestaurants, filteredRestaurants, searchRestaurants } = useRestaurantList();
+	const { user, setUser } = useContext(UserContext);
 
 	// Not render component (Early return)
 	if (!allRestaurants)	return null;
@@ -18,7 +20,7 @@ const Body = () => {
 		<>
 			<div className="search-container p-3 bg-pink-200 my-2">
 				<input 
-					className="search-input focus:bg-green-200 p-2 m-2" 
+					className="search-input focus:bg-green-200 p-2 m-2 border border-green-600" 
 					type="text" 
 					placeholder="Search" 
 					value= {searchText} 
@@ -33,6 +35,22 @@ const Body = () => {
 				>
 					Search
 				</button>
+				<input
+					className="p-2 m-2 border border-green-600"
+					value={user.name}
+					onChange={(e) => setUser({
+						...user,
+						name: e.target.value,
+					})}
+				/>
+				<input
+					className="p-2 m-2 border border-green-600"
+					value={user.email}
+					onChange={(e) => setUser({
+						...user,
+						email: e.target.value,
+					})}
+				/>
 			</div>
 			<div className='restaurant-list flex flex-wrap bg-purple-200'>
 				{
