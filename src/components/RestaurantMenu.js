@@ -2,10 +2,17 @@ import { useParams } from "react-router-dom";
 import { CARD_IMG_CDN_URL, MENU_URL } from "../constants";
 import Shimmer from "./Shimmer";
 import useRestaurantData from "../utils/useRestaurantData";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const restaurant = useRestaurantData(resId);
+  const dispatch = useDispatch();
+
+  const handleAddFoodItem = (item) => {
+    dispatch(addItem(item));
+  }
 
   if (!restaurant)  return <Shimmer />
   const { name, cloudinaryImageId, locality, cuisines, costForTwoMessage, avgRating, itemCards } = restaurant;
@@ -26,7 +33,15 @@ const RestaurantMenu = () => {
               itemCards.map(item => (
                 <div className="p-1" key={item.card.info.id}>
                   <li className="font-medium">{item.card.info.name}: Rs.{item.card.info.price/100 || item.card.info.defaultPrice/100}</li>
-                  <p>{item.card.info.category}</p>
+                  <p>
+                    {item.card.info.category} 
+                    <button 
+                      className='px-2 py-1 mx-3 bg-blue-500 text-white rounded-lg' 
+                      onClick={() => handleAddFoodItem(item.card.info)}
+                    >
+                      Add Item
+                    </button>
+                  </p>
                 </div>
               ))
             ) : (

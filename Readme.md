@@ -209,9 +209,12 @@ Lifting the state up: jab kisi child ke state ko parent se control karte hai, ma
 
 - React dev tools me apne pas profiler hota hai, usse on karke fir hum jo chahe karo, uske baad stop karne ke baad hum har chij dekh sakte hai, like kis component ne load hone me kitna time lgaya ye sab, konsa component slow chal rha h, and apne app ko uss hisab se dekh ke optimise kar sakte hai
 
+React context allows us to pass down and use (consume) data in whatever component we need in our React app without using props.
+- React context helps us avoid the problem of props drilling. jhape jyada props drilling ho rha hai, whape hum react context ka use karte hai
+- context unhi ke liye use karo, jinhe tum jyada change nhi kar rhe ho, context is just like a global variable in our app. 
 - suppose hamare pas koi aisa information jo hamme app me har jagah chahiye, to whape hum props drilling nhi kar sakte, we need to store that data in some central place. 
 - We can use localstorage for that, but updating the localstorage is a costly operation, that's why we will no do that. 
-- We will use react context for storing the data in the central place.
+- We will use react context for storing the data in the central place. Data should be placed on React context that does not need to be updated often.
 - state, props ye sab jo hote hai, they are tied to a component, but jo apna context hai, wo kisi bhi component se tied nhi hota hai, wo saare components se independent hota hai, to usse app me khipe bhi use kar sakte hai.
 - aisa data jo haame app me alag alag jagah use hoga, uske liye context ka use karte hai hum. 
 - It stores data in a central place. 
@@ -219,3 +222,41 @@ Lifting the state up: jab kisi child ke state ko parent se control karte hai, ma
 - context ka haam naam de sakte hai, displayName se, to wo naam react developer tools me dikhega, to ab debugging me iska use kar sakte hai
 - class based component me apne context ko directly humlog as a component use karte hai
 - wha humlog ek JSX likhenge, joki ek value lega, aur uss se jo maan hai wo karega
+- The provider component is responsible for creating the context and providing the data to the consumer components. The consumer component is responsible for accessing the data from the context.
+
+=> Hamare application me 2 layers hota hai, UI layer and the data layer. 
+- Jo haame dikhta hai, wo UI layer hota hai, all the re-renders ye sab UI layer handle karta hai
+- UI layer: view, jo haame dikhta hai, jo hum JSX likhte hai 
+- Data layer handles the data, data khase aa rha, kaise store ho rha h, iske liye react context, redux ye sabka use karte hai, passing the data from one component to another, props me jo data jaata hai, ye sab data layer me aata hai
+- Data layer me apna data change ho sakta hai, and UI layer me wo jhape bhi ho, wha sab data shi se reflect hona chahiye, aur ye sab browser me hota hai
+
+- Redux: We use redux to handle large amount of data. 
+- Context ka use hamne prop drilling ko avoid karne ke liye kiya tha
+- Context jo hai ek central global variable ki tarah hota h, koi bhi component hamare app ka, directly context ko use kar sakta hai, ya fir modify kar sakta hai
+
+- Redux me apne pas ek store hota hai, ussi me sab data store hota hai
+- Context me hum multiple contexts bnate the, alag alah chij ke liye, but redux me hamare pas ek hi store hota hai, and ussi store me sab data rakhte hai hum
+slice: A small portion of our store. Hamare redux store me hum multiple slices raakh sakte hai, alag alag chij ka. 
+- hamare components jo hai, wo directly store ko jaake modify nhi kar sakte 
+- if we click on a component to modify the store, it dispatches an action, which calls a function, and then that function modifies the slice of the store. 
+- The function which modfies the slice of the store, is know as Reducer function.
+- if we want to use the redux store information in our page, we need to use selector. 
+- Redux store calls the selctor, and then the selector updates the UI.
+
+iska poora flow diagram ka screenshot hai, wo dekh lena.
+- Selector is just a hook at the end of day, hook to bas ek function hota hai. 
+- IF we want to read the data from the redux store, we use selector hook. 
+
+- Jis component ko bhi data read karna hai, wo subscribe karta hai store ko using the selector. 
+- So, the  component subscribes to the store using the selector for reading the data, and updating the UI. 
+
+React-redux jo library hai, wo ek bridge hai between react and redux
+
+- Reducers jo hai wo ek state leta hai, aur usse directly modify karta hai, reducers se kuch return karne ki jarurat nhi hai
+
+- useSelector is used for subscribing to the store, so useSelector ke callback me hum jo daalenge usme subscribe karenge
+  - const store = useSelector(store => store);
+  - This is bad, because hum poore store ko subscribe kar rhe h, to agar store me kuch bhi change hoga, to ye poora page baar baar re-render hoga, joki bahut kharab hai 
+  - Subscribe to the only specific part, jo tumhe uss page me chahiey 
+  like store.cart.items;
+  

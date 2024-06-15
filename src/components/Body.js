@@ -18,7 +18,7 @@ const Body = () => {
 		<Shimmer/>
 	) : (
 		<>
-			<div className="search-container p-3 bg-pink-200 my-2">
+			<div className="search-container p-3 m-2 bg-pink-200">
 				<input 
 					className="search-input focus:bg-green-200 p-2 m-2 border border-green-600" 
 					type="text" 
@@ -52,7 +52,7 @@ const Body = () => {
 					})}
 				/>
 			</div>
-			<div className='restaurant-list flex flex-wrap bg-purple-200'>
+			<div className='restaurant-list flex flex-wrap bg-purple-200 p-2 m-2'>
 				{
 					filteredRestaurants?.length === 0 ? (
 						<h1>No Restaurants match your filter!!</h1>
