@@ -18,9 +18,6 @@ const useRestaurantData = (resId) => {
 
   const { name, cloudinaryImageId, locality, avgRating, costForTwoMessage, cuisines } = restaurantInfo?.cards?.[2]?.card?.card?.info;
   const { itemCards } = (restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.itemCards) ? (restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card) : (restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card);
-  // console.log("itemCards ====>>>> ", itemCards);
-  // console.log(restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.itemCards);
-  // console.log(restaurantInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.itemCards)
 
   return {
     name, cloudinaryImageId, locality, avgRating, costForTwoMessage, cuisines, itemCards

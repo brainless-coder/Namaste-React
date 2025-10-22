@@ -55,8 +55,8 @@ class Profile extends React.Component {
 
 
 
-        {/* <h3>Count: {this.state.count}</h3> */}
-        {/* <button onClick={() =>{
+        {/* <h3>Count: {this.state.count}</h3>
+        <button onClick={() =>{
           // We do not mutate state directly
           // Never do this.state.count = 1 directly
           // setState() ke andar direclty apna modified state daal do
